@@ -3,6 +3,9 @@
 Personal job-application tracker. Portfolio project on GitHub, and my way of learning
 production Python backend work for interviews.
 
+## Scope
+See docs/MVP.md. Only build what's in v1. Ask before adding anything from v2 or later.
+
 ## Stack
 FastAPI, Pydantic, SQLAlchemy 2.0, Alembic, PostgreSQL 16, pytest, Ruff,
 Docker Compose, GitHub Actions. Later: APScheduler/cron + AWS SES, deploy to EC2 + RDS.
