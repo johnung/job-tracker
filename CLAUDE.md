@@ -1,10 +1,11 @@
 # Job Tracker
 
 Personal job-application tracker. Portfolio project on GitHub, and my way of learning
-production Python backend work for interviews.
+production Python backend work.
 
 ## Scope
-See docs/MVP.md. Only build what's in v1. Ask before adding anything from v2 or later.
+See docs/MVP.md. Only build what's in v1. v1.5 (AI features) starts after v1 + CI.
+Ask before adding anything beyond that.
 
 ## Stack
 FastAPI, Pydantic, SQLAlchemy 2.0, Alembic, PostgreSQL 16, pytest, Ruff,
@@ -16,7 +17,7 @@ Docker Compose, GitHub Actions. Later: APScheduler/cron + AWS SES, deploy to EC2
 - Explain anything you generate. Map concepts to Rails when it helps
   (SQLAlchemy ≈ ActiveRecord, Alembic ≈ rails db:migrate, pytest ≈ RSpec, Ruff ≈ RuboCop).
 - Use plan mode for anything touching more than one file. Show the plan before editing.
-- Small commits. No redesigning mid-build. New ideas go in V2_IDEAS.md.
+- Small commits. No redesigning mid-build. New ideas go on the v2 list in docs/MVP.md.
 
 ## Commands
 - Run locally: `docker compose up --build`, then http://localhost:8000/health
