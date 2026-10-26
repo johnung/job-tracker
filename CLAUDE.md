@@ -32,4 +32,4 @@ Tables: users, applications, contacts, events, job_runs.
 - [x] First pytest test passing
 - [x] Docker Compose (app + Postgres)
 - [x] SQLAlchemy models + first Alembic migration
-- [ ] GitHub Actions CI (ruff + pytest)
+- [x] GitHub Actions CI (ruff + pytest)
