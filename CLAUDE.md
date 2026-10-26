@@ -31,5 +31,5 @@ Tables: users, applications, contacts, events, job_runs.
 - [x] Repo, venv, FastAPI /health endpoint
 - [x] First pytest test passing
 - [x] Docker Compose (app + Postgres)
-- [ ] SQLAlchemy models + first Alembic migration
+- [x] SQLAlchemy models + first Alembic migration
 - [ ] GitHub Actions CI (ruff + pytest)
