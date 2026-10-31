@@ -136,9 +136,9 @@ Four sessions of about 3 hours each. Each one ends with something that runs and 
 
 **Weekend 1, Saturday: skeleton**
 
-- [ ] Repo, README stub, Ruff, pytest, GitHub Actions running both
-- [ ] docker-compose with FastAPI + Postgres; `/health` returns 200
-- [ ] SQLAlchemy models + first Alembic migration for all tables
+- [x] Repo, README stub, Ruff, pytest, GitHub Actions running both
+- [x] docker-compose with FastAPI + Postgres; `/health` returns 200
+- [x] SQLAlchemy models + first Alembic migration for all tables
 
 **Weekend 1, Sunday: the core API**
 
