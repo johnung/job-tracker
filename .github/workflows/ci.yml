@@ -36,7 +36,7 @@ jobs:
           --health-retries 5
     env:
       DATABASE_URL: postgresql+psycopg://jobtracker:jobtracker@localhost:5432/jobtracker
-      JWT_SECRET_KEY: ci-only-not-a-real-secret
+      JWT_SECRET_KEY: ci-only-not-a-real-secret-32-bytes-min
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7

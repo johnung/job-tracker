@@ -20,7 +20,7 @@ services:
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     environment:
       DATABASE_URL: postgresql+psycopg://jobtracker:jobtracker@db:5432/jobtracker
-      JWT_SECRET_KEY: dev-only-not-a-real-secret
+      JWT_SECRET_KEY: dev-only-not-a-real-secret-32-bytes-min
     ports:
       - "8000:8000"
     volumes:
