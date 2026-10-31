@@ -1,5 +1,7 @@
+from collections.abc import Generator
+
 from sqlalchemy import MetaData, create_engine
-from sqlalchemy.orm import DeclarativeBase, sessionmaker
+from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 from app.config import settings
 
@@ -18,3 +20,12 @@ class Base(DeclarativeBase):
 
 engine = create_engine(settings.database_url)
 SessionLocal = sessionmaker(bind=engine)
+
+
+def get_db() -> Generator[Session]:
+    """FastAPI dependency: one session per request, closed afterwards."""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
