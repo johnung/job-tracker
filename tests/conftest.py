@@ -4,6 +4,8 @@ from sqlalchemy.orm import Session
 
 from app.db import engine, get_db
 from app.main import app
+from app.models import User
+from app.security import hash_password
 
 
 @pytest.fixture
@@ -31,3 +33,16 @@ def client(db_session):
     with TestClient(app) as test_client:
         yield test_client
     app.dependency_overrides.clear()
+
+
+@pytest.fixture
+def make_user(db_session):
+    """Factory: make_user(email=..., password=...) -> persisted User."""
+
+    def _make_user(email="me@example.com", password="correct-password", name=None):
+        user = User(email=email, password_hash=hash_password(password), name=name)
+        db_session.add(user)
+        db_session.commit()
+        return user
+
+    return _make_user
