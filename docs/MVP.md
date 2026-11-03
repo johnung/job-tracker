@@ -142,7 +142,7 @@ Four sessions of about 3 hours each. Each one ends with something that runs and 
 
 **Weekend 1, Sunday: the core API**
 
-- [ ] Login + JWT; password hashing
+- [x] Login + JWT; password hashing
 - [ ] Applications CRUD with stage-change events
 - [ ] Contacts and events routes
 - [ ] Tests for each route, including the other-user 404
