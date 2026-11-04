@@ -101,7 +101,7 @@ REST, JSON, every route except login behind a bearer token. Twelve routes cover 
 | --- | --- | --- |
 | POST | /auth/login | Email + password → JWT |
 | GET | /applications | List; filters `?stage=`, `?q=` (search), `?needs_follow_up=true` |
-| POST | /applications | Create; writes a first "applied" event |
+| POST | /applications | Create; writes a first `stage_change` event ("Created at stage: <stage>", dated `applied_on` or today) |
 | GET | /applications/{id} | One application with its contacts and events |
 | PATCH | /applications/{id} | Partial update; a stage change also writes a stage\_change event |
 | DELETE | /applications/{id} | Delete (cascades to contacts and events) |
