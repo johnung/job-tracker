@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 
 from app.db import engine, get_db
 from app.main import app
-from app.models import User
-from app.security import hash_password
+from app.models import Application, User
+from app.security import create_access_token, hash_password
 
 
 @pytest.fixture
@@ -46,3 +46,30 @@ def make_user(db_session):
         return user
 
     return _make_user
+
+
+@pytest.fixture
+def auth_headers():
+    """auth_headers(user) -> {"Authorization": "Bearer <token>"} for that user."""
+
+    def _auth_headers(user):
+        return {"Authorization": f"Bearer {create_access_token(user.id)}"}
+
+    return _auth_headers
+
+
+@pytest.fixture
+def make_application(db_session):
+    """Factory: make_application(user, company=..., **fields) -> persisted Application.
+
+    Inserts the row directly, so it does NOT write the first stage_change event
+    the POST route writes. Use the route when a test needs that event.
+    """
+
+    def _make_application(user, company="Acme", role="Backend Engineer", **fields):
+        application = Application(user_id=user.id, company=company, role=role, **fields)
+        db_session.add(application)
+        db_session.commit()
+        return application
+
+    return _make_application
