@@ -1,10 +1,15 @@
 import enum
 from datetime import date, datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import Date, DateTime, Enum, ForeignKey, Index, String, Text, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base
+
+if TYPE_CHECKING:
+    from app.models.contact import Contact
+    from app.models.event import Event
 
 
 class ApplicationStage(enum.StrEnum):
@@ -49,4 +54,10 @@ class Application(Base):
     )
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
+    )
+    contacts: Mapped[list["Contact"]] = relationship(
+        cascade="all, delete-orphan", passive_deletes=True
+    )
+    events: Mapped[list["Event"]] = relationship(
+        cascade="all, delete-orphan", passive_deletes=True, order_by="Event.occurred_on"
     )
