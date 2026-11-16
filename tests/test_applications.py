@@ -164,7 +164,7 @@ def test_get_application_includes_contacts_and_events(
     client, make_user, make_application, auth_headers, db_session
 ):
     user = make_user()
-    application = make_application(user, company="Acme", role="Backend Engineer")
+    application = make_application(user, company="Acme")
     application.contacts.append(Contact(name="Jane Recruiter"))
     application.events.append(Event(kind=EventKind.INTERVIEW))
     db_session.commit()
@@ -182,3 +182,23 @@ def test_get_application_includes_contacts_and_events(
     assert len(contacts) == 1
     contact = contacts[0]
     assert contact["name"] == "Jane Recruiter"
+
+
+def test_get_application_another_user_returns_404(
+    client, make_user, auth_headers, make_application
+):
+    user = make_user()
+    other_user = make_user(email="other@email.com")
+
+    other_app = make_application(other_user, company="other")
+    response = client.get(f"/applications/{other_app.id}", headers=auth_headers(user))
+
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Application not found"
+
+
+def test_get_application_with_missing_id_returns_404(client, make_user, auth_headers):
+    user = make_user()
+    response = client.get("/applications/-1", headers=auth_headers(user))
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Application not found"
